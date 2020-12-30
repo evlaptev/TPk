@@ -2,10 +2,7 @@
 #include<iostream>
 #include<string>
 using namespace std;
-/*
-(военный или гражданский, тип военного аппарата, тип гражданского аппарата, взлетная масса, тип двигателей, число двигателей, 
-количество крыльев, расположение крыльев, тип шасси, скорость полета, по типу взлета и посадки, способ управления, экипаж 
-(число человек), год производства, тип вооружения) */
+
 class aircraft
 {
 protected:
@@ -115,262 +112,32 @@ class CevilianBuilder :
 class MilitaryBuilder :
 	public AircraftBuilder
 {
-	void TypeBuild() override
-	{
-	point:
-		try {
-			string in;
-			cout << "Введите тип военного самолета: ";
-			cin.get();
-			getline(cin,in);
-			cout << endl;
-			v->setType(in);
-			for (int i = 0; i < in.length(); i++)
-			{
-				if (in[i] > 127 || in[i] < 0 || in.empty()) throw "Были введены некорректные данные.";
-			}
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-			goto point;
-		}
-	}
+	void TypeBuild() override;
 
-	void MassBuild() override {
-	point:
-		try {
-			float in;
-			cout << "Введите массу военного самолета(т): ";
-			cin >> in;
-			cout << endl;
-			v->setMass(in);
-			if (in < 0) throw "Были введены некорректные данные.";
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-		}
-	}
+	void MassBuild() override;
 
-	void ETBuild() override {
-	point:
-		try {
-			string in;
-			cout << "Введите тип двигателя военного самолета: ";
-			cin.get();
-			getline(cin, in);
-			cout << endl;
-			v->setET(in);
-			for (int i = 0; i < in.length(); i++)
-			{
-				if (in[i] > 127 || in[i] < 0 || in.empty()) throw "Были введены некорректные данные.";
-			}
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-			goto point;
-		}
-	}
+	void ETBuild() override;
 
-	void CEBuild() override {
-	point:
-		try {
-			int in;
-			cout << "Введите количество двигателей: ";
-			cin >> in;
-			cout << endl;
-			v->setCE(in);
-			if (in < 1 && in > 10) throw "Были введены некорректные данные.";
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-		}
-	}
+	void CEBuild() override;
 
-	void YearBuild() override {
-	point:
-		try {
-			int in;
-			cout << "Введите год производства: ";
-			cin >> in;
-			cout << endl;
-			v->setYear(in);
-			if (in < 1950 || in > 2020) throw "Были введены некорректные данные.";
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-		}
-	}
+	void YearBuild() override;
 
-	void CWBuild() override {
-	point:
-		try {
-			int in;
-			cout << "Введите количество крыльев: ";
-			cin >> in;
-			cout << endl;
-			v->setCW(in);
-			if (in < 0 || in >6 || in % 2 == 1) throw "Были введены некорректные данные.";
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-		}
-	}
+	void CWBuild() override;
 
-	void LocationBuild() override {
-	point:
-		try {
-			int in;
-			cout << "Введите нахождение крыльев: "<<endl;
-			cout << "|0| - низкопланы; \n |1| - среднепланы; \n |2| - высокопланы;" << endl;
-			cin >> in;
-			cout << endl;
-			v->setLocation(in);
-			if (in < 0 || in > 2) throw "Были введены некорректные данные.";
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-		}
-	}
+	void LocationBuild() override;
 
-	void ChassisBuild() override {
-	point:
-		try {
-			int in;
-			cout << "Введите тип шасси: " << endl;
-			cout << "|0| - колесное; \n |1| - лыжное; \n |2| - поплавковое;" << endl;
-			cin >> in;
-			cout << endl;
-			v->setChassis(in);
-			if (in < 0 || in > 2) throw "Были введены некорректные данные.";
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-		}
-	}
+	void ChassisBuild() override;
 
-	void SpeedBuild() override {
-	point:
-		try {
-			float in;
-			cout << "Введите максимальную скорость военного самолета (км/ч): ";
-			cin >> in;
-			cout << endl;
-			v->setSpeed(in);
-			if (in < 100 || in > 2000) throw "Были введены некорректные данные.";
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-		}
-	}
+	void SpeedBuild() override;
 
-	void RiseBuild() override {
-	point:
-		try {
-			int in;
-			cout << "Введите тип взлета самолета: " << endl;
-			cout << "|0| - с тормозов; \n |1| - с разбега;\n |2| - вертикальный;\n |3| -со спец оборудованием;" << endl;
-			cin >> in;
-			cout << endl;
-			v->setRise(in);
-			if (in < 0 || in > 3) throw "Были введены некорректные данные.";
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-		}
-	}
+	void RiseBuild() override;
 
-	void LandingBuild() override {
-	point:
-		try {
-			int in;
-			cout << "Введите тип посадки гражданского самолета: " << endl;
-			cout << "|0| - в авторежиме;\n |1| - в директорном режиме;\n |2| - по ОСП;\n |3| - по КГС" << endl;
-			cin >> in;
-			cout << endl;
-			v->setLanding(in);
-			if (in < 0 || in > 3) throw "Были введены некорректные данные.";
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-		}
-	}
+	void LandingBuild() override;
 
-	void CrewBuild() override
-	{
-	point:
-		try {
-			int in;
-			cout << "Введите максимальное количество человек: ";
-			cin >> in;
-			cout << endl;
-			v->setCrew(in);
-			if (in < 0) throw "Были введены некорректные данные.";
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-		}
-	}
+	void CrewBuild() override;
 
-	void ControlBuild()
-	{
-	point:
-		try {
-			int in;
-			cout << "Введите тип управления летательным аппаратом: " << endl;
-			cout << "|0| - в режиме БПЛА;\n |1| - в ручном режиме;" << endl;
-			cin >> in;
-			cout << endl;
-			v->setControl(in);
-			if (in != 0 && in != 1) throw "Были введены некорректные данные.";
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-		}
-	}
-	void GunBuild() override
-	{
-	point:
-		try {
-			int in;
-			cout << "Введите тип посадки гражданского самолета: " << endl;
-			cout << "|0| - none;\n |1| - ракеты;\n |2| - бомбы;\n |3| - пулеметы" << endl;
-			cin >> in;
-			cout << endl;
-			v->setGun(in);
-			if (in < 0 || in > 3) throw "Были введены некорректные данные.";
-		}
-		catch (const char* a)
-		{
-			cerr << a << endl;
-			cerr << "Попробуйте ввести данные еще раз. " << endl; goto point;
-		}
-	}
+	void ControlBuild();
+	void GunBuild() override;
 };
 
 class helicopterBuilder :
